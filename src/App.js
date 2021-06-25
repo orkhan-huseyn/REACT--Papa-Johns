@@ -1,16 +1,14 @@
 import { Switch, Route } from 'react-router-dom';
 
 import Layout from './components/layout/Layout';
-
 import Home from './components/pages/Home';
-import About from './components/pages/About';
+import About from './components/pages/about/About';
 import Menu from './components/pages/Menu';
-import Restaurants from './components/pages/Restaurants';
-
+import Restaurants from './components/pages/restaurants/Restaurants';
 
 function App() {
   return (
-    <Layout>
+    <Layout >
       <Switch>
         <Route path='/' exact>
           <Home />

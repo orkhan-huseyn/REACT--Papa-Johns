@@ -1,20 +1,27 @@
-import { Link } from 'react-router-dom';
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 
-function Navigation({isActive}) {
-    function activateLink(e) {
-        const active = document.querySelector('.nav__link--active');
-        active.classList.remove('nav__link--active');
-        e.target.classList.add('nav__link--active');
-    }
+import AppContext from '../../store/app-context';
 
-    return (
-        <nav className={`nav ${!isActive ? 'nav__hidden': ''}`}>
-            <Link onClick={activateLink} to='/' className='nav__link nav__link--active' href="#">ƏSAS SƏHİFƏ</Link>
-            <Link onClick={activateLink} to='/about' className='nav__link' href="#">HAQQIMIZDA</Link>
-            <Link onClick={activateLink} to='/menu' className='nav__link' href="#">MENYU</Link>
-            <Link onClick={activateLink} to='/restaurants' className='nav__link' href="#">RESTORANLAR</Link>
-        </nav>
-    );
+function Navigation({ isActive }) {
+  const ctx = useContext(AppContext);
+
+  return (
+    <nav className={`nav ${!isActive ? "nav__toggle" : ""}`}>
+      <Link to="/" className={`nav__link ${ctx.activePage === 'home' ? 'nav__link--active' : ''}`} href="#">
+        ƏSAS SƏHİFƏ
+      </Link>
+      <Link to="/about" className={`nav__link ${ctx.activePage === 'about' ? 'nav__link--active' : ''}`} href="#">
+        HAQQIMIZDA
+      </Link>
+      <Link to="/menu" className={`nav__link ${ctx.activePage === 'menu' ? 'nav__link--active' : ''}`} href="#">
+        MENYU
+      </Link>
+      <Link to="/restaurants" className={`nav__link ${ctx.activePage === 'restaurants' ? 'nav__link--active' : ''}`} href="#">
+        RESTORANLAR
+      </Link>
+    </nav>
+  );
 }
 
 export default Navigation;

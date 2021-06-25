@@ -1,15 +1,6 @@
-import { useState } from "react";
-
-function Bars({ onToggleNav }) {
-    const [barsActive, setBarsActive] = useState(false);
-
-    function toggleBarsHandler() {
-        setBarsActive(prevState => !prevState);
-        onToggleNav();
-    }
-
+function Bars({ onToggleNav, isOpened }) {
     return (
-        <button onClick={toggleBarsHandler} className={`bars ${barsActive ? 'bars--active' : ''}`}>
+        <button onClick={() => onToggleNav()} className={`bars ${isOpened ? 'bars--opened' : ''}`}>
             <span className='bars__content'></span>
         </button>
     );

@@ -30,7 +30,8 @@ ul, ol {
 }
 
 ::selection {
-    background-color: transparent;
+    background-color: var(--primary-color);
+    color: white;
 }
   
 /* CSS RESET END */
@@ -80,11 +81,11 @@ ul, ol {
     width: 100%;
     transform: scaleX(0);
     background-color: currentColor;
-    transition: all .2s;
 }
 
 .nav__link:hover::after {
     transform: scaleX(1);
+    transition: all .2s;
 }
 
 .nav__link--active::after {
@@ -137,16 +138,16 @@ ul, ol {
     top: 10px;
 }
 
-.bars--active .bars__content {
+.bars--opened .bars__content {
     background-color: transparent;
 }
 
-.bars--active .bars__content::before {
+.bars--opened .bars__content::before {
     top: 0;
     transform: rotate(45deg);
 }
 
-.bars--active .bars__content::after {
+.bars--opened .bars__content::after {
     top: 0;
     transform: rotate(-45deg);
 }
@@ -175,12 +176,13 @@ ul, ol {
   .cart-button__icon {
     width: 2.16rem;
     height: 2.16rem;
+    margin-right: .8rem;
   }
   
   .cart-button__text {
       font-size: 2rem;
-      margin: 0 .8rem;
       transform: translateY(1.4px);
+      margin-right: .8rem;
   }
 
   .cart-button__badge {
@@ -188,7 +190,7 @@ ul, ol {
     font-size: 2rem;
     transition: all .2s;
     font-family: 'Noto Sans JP', sans-serif;
-    transform: translateY(-1.5px);
+    transform: translateY(-1.7px);
   }
   
   .bump {
@@ -198,7 +200,7 @@ ul, ol {
 /* HEADER END */
 
 
-/* MAIN START */
+/* HOME START */
 
 .main {
     padding: 5rem 2rem;
@@ -222,7 +224,105 @@ ul, ol {
     line-height: 7.2rem;
 }
 
-/* MAIN END */
+/* HOME END */
+
+
+/* ABOUT START */
+
+.section__about--container {
+    display: flex;
+}
+
+.section__about--image {
+    flex: 0 0 45rem;
+}
+
+.cook {
+    width: 100%;
+    display: block;
+}
+
+.section__about--content {
+    flex: 1;
+    margin-left: 2rem;
+}
+
+.section__about--paragraph {
+    font-size: 1.75rem;
+    color: var(--primary-color);
+    line-height: 1.5;
+}
+
+/* ABOUT END */
+
+
+/* RESTAURANTS START */
+
+.branches {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.address-box {
+    font-size: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    color: var(--primary-color);
+    border: 1px solid rgba(173, 15, 20, .4);
+    border-radius: 8px;
+    cursor: pointer;
+    background-image: linear-gradient(to right bottom, rgba(173, 15, 20, .7), rgba(16, 172, 132, .7));
+    background-repeat: no-repeat;
+    background-size: 0% 0%;
+}
+
+.address-box:hover,
+.address-box__selected {
+    background-size: 100% 100%;
+    color: white;
+    border-color: transparent;
+    transition: all .2s;
+}
+
+.address-box__selected {
+    background-image: linear-gradient(to right bottom, #ad0f14, #10ac84);
+}
+
+.address {
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+.work-hours {
+    text-align: center;
+}
+
+.work-hours > i {
+    margin-right: 1rem;
+}
+
+.branches__gallery {
+    grid-column: 1/3;
+}
+
+.gallery-heading {
+    font-size: 5rem;
+    text-align: center;
+    color: var(--primary-color);
+    border-top: 1px solid rgba(173, 15, 20, .4);
+    border-bottom: 1px solid rgba(173, 15, 20, .4);;
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+}
+
+.map {
+    margin-top: 2rem;
+}
+
+/* RESTAURANTS END */
 
 
 /* FOOTER START */
@@ -287,8 +387,6 @@ ul, ol {
 /* FOOTER END */
 
 
-
-
 /* RESPONSIVE START */
 
 @media only screen and (max-width: 1200px) {
@@ -309,12 +407,15 @@ ul, ol {
     }
 
     .cart-button__badge {
-        margin-left: .8rem;
         transform: translateY(-1px);
     }
 
     .main {
         padding: 4rem 1rem;
+    }
+
+    .address-box {
+        font-size: 2rem;
     }
 
     .footer {
@@ -335,7 +436,7 @@ ul, ol {
         flex: 0 0 100%;
     }
 
-    .nav__hidden {
+    .nav__toggle {
         margin-top: 0;
         display: none;
     }
@@ -382,6 +483,32 @@ ul, ol {
         padding: 3.5rem .5rem;
     }
 
+    .section__about--container {
+        flex-direction: column;
+    }
+
+    .section__about--image {
+        flex: 0 0 100%;
+    }
+
+    .section__about--content {
+        margin-left: 0;
+        margin-top: 2rem;
+    }
+
+    .branches {
+        gap: 1.5rem;
+    }
+
+    .gallery-heading {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .map {
+        margin-top: 1.5rem;
+    }
+
     .footer {
         flex-wrap: wrap;
         padding: 1rem .5rem;
@@ -408,11 +535,19 @@ ul, ol {
         letter-spacing: 2.5px;
         line-height: 5.7rem;
     }
+
+    .map {
+        height: 300px !important;
+    }
 }
 
 @media only screen and (max-width: 470px) {
     .logo-box {
         flex: 0 0 15rem;
+    }
+
+    .nav__link {
+        font-size: 1.5rem;
     }
 
     .bars {
@@ -440,6 +575,28 @@ ul, ol {
     .cart-button {
         margin-left: .5rem;
         padding: 1rem;
+    }
+
+    .page-title__content {
+        font-size: 2.7rem;
+    }
+
+    .branches {
+        gap: 1rem;
+    }
+
+    .map {
+        margin-top: 1rem;
+    }
+
+    .address-box {
+        font-size: 1.5rem;
+    }
+
+    .gallery-heading {
+        font-size: 2rem;
+        padding: 1rem 0;
+        margin-bottom: 1rem;
     }
 
     .footer-info img {

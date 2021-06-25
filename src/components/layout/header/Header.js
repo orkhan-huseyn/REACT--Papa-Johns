@@ -1,8 +1,9 @@
+import { useState } from 'react';
+
 import Logo from './Logo';
 import Navigation from './Navigation';
 import Bars from './Bars';
 import CartButton from './CartButton/CartButton';
-import { useState } from 'react';
 
 function Header() {
     const [navIsActive, setNavIsActive] = useState(false);
@@ -14,7 +15,7 @@ function Header() {
     return <header className='header'>
         <Logo />
         <Navigation isActive={navIsActive} />
-        <Bars onToggleNav={toggleNavHandler} />
+        <Bars onToggleNav={toggleNavHandler} isOpened={navIsActive} />
         <CartButton />
     </header>
 }

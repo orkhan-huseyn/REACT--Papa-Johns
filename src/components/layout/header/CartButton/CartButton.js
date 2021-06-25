@@ -1,6 +1,6 @@
 import CartIcon from './CartIcon';
 
-function CartButton(props) {
+function CartButton() {
   return (
     <button className='cart-button'>
       <span className='cart-button__icon'>
